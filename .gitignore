@@ -7,3 +7,5 @@ frontend/node_modules/
 
 # Vite build output
 frontend/dist/
+
+backend/portfolio/static/react
