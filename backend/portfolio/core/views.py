@@ -5,5 +5,5 @@ core = Blueprint('core', __name__)
 
 @core.route('/')
 def index():
-   # MORE TO COME
-   return render_template('index.html')
+   user = {"name": "Nico"}
+   return render_template("index.html", user=user)

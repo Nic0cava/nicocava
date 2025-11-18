@@ -1,3 +1,9 @@
 venv
 .env
 __pycache__
+
+# Node modules
+frontend/node_modules/
+
+# Vite build output
+frontend/dist/
