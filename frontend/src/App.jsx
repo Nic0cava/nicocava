@@ -1,7 +1,9 @@
-import "./App.css";
 import Silk from "./Silk";
+import ProfileCard from "./ProfileCard";
 
 function App({ username }) {
+  const displayName = username || "Nico";
+
   return (
     <div>
       <Silk
@@ -12,49 +14,37 @@ function App({ username }) {
         rotation={0}
       />
 
-      {/* All page content lives here */}
       <main
         style={{
           position: "relative",
           zIndex: 1,
-          padding: "5rem 1.5rem 6rem", // top/bottom padding
+          padding: "5rem 1.5rem 6rem",
+          minHeight: "80vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        {/* Hero section */}
-        <section className="container mb-5">
-          <h1 className="display-4 text-light">
-            Hey, I'm {username || "Nico"}
-          </h1>
-          <p className="lead text-light-50">
-            Junior full-stack dev, trader, and creative — building tools,
-            games, and weird experiments.
-          </p>
-        </section>
-
-        {/* Projects section with cards */}
-        <section className="container mb-5">
-          <h2 className="h3 text-light mb-4">Featured Projects</h2>
-          <div className="row g-3">
-            <div className="col-md-6">
-              <div className="card bg-dark bg-opacity-75 border-0 shadow-sm">
-                <div className="card-body">
-                  <h5 className="card-title text-light">
-                    FB Merch Inventory App
-                  </h5>
-                  <p className="card-text text-light-50">
-                    Inventory system for Funky Buddha Brewery's merch
-                    department.
-                  </p>
-                  <span className="badge bg-secondary me-1">Flask</span>
-                  <span className="badge bg-secondary me-1">PostgreSQL</span>
-                  <span className="badge bg-secondary me-1">VPS</span>
-                </div>
-              </div>
-            </div>
-
-            {/* more cards here */}
-          </div>
-        </section>
+        <div>
+          <ProfileCard
+            name={displayName}
+            title="Junior Full-Stack Developer & Creative"
+            handle="the.nico.cava"
+            status="Building tools, games & experiments"
+            contactText="Contact Me"
+            avatarUrl="/static/images/nico_nobg1.png"
+            // iconUrl="/static/images/Robot.png"
+            // grainUrl="/static/images/nico_nobgb1.png"
+            miniAvatarUrl="/static/images/nico_nobg1.png"
+            behindGlowEnabled={true}
+            showUserInfo={true}
+            enableTilt={true}
+            enableMobileTilt={false}
+            onContactClick={() => {
+              window.location.href = "mailto:nmcava01@gmail.com";
+            }}
+          />
+        </div>
       </main>
     </div>
   );
