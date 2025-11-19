@@ -799,3 +799,61 @@ body {
   box-shadow: none !important;
 }
 
+/* Text block next to profile card */
+.hero-text {
+  color: #f8f9ff;
+  max-width: 520px;
+}
+
+.hero-title {
+  /* font-size: clamp(2rem, 3vw, 2.6rem); */
+  font-size: clamp(2.8rem, 4vw, 3.6rem);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  font-size: 1rem;
+  color: rgba(240, 240, 255, 0.85);
+  margin-bottom: 0.75rem;
+}
+
+.hero-body {
+  font-size: 0.95rem;
+  color: rgba(220, 220, 245, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Social icons row */
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f8f9ff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero-socials a:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 200, 0.7);
+  background: rgba(0, 106, 80, 0.7);
+}
+
+/* fixed pixel blur */
+.navbar-brand img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
