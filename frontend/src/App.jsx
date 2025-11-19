@@ -39,7 +39,7 @@ function App({ username }) {
             behindGlowEnabled={true}
             showUserInfo={true}
             enableTilt={true}
-            enableMobileTilt={false}
+            enableMobileTilt={true}
             onContactClick={() => {
               window.location.href = "mailto:nmcava01@gmail.com";
             }}
