@@ -119,14 +119,18 @@ const Silk = ({
   );
 
   return (
-    <Canvas dpr={[1, 2]} frameloop="always" style={{
-        position: "fixed",
-        inset: 0,
-        zIndex: -1,
-        width: "100vw",
-        height: "100vh",
-        display: "block",
-      }}>
+    <Canvas
+  dpr={[1, 2]}
+  frameloop="always"
+  style={{
+    position: "fixed",
+    inset: 0,
+    zIndex: -1,
+    width: "100vw",
+    height: "100svh",   // was 100vh
+    display: "block",
+  }}
+>
       <SilkPlane ref={meshRef} uniforms={uniforms} />
     </Canvas>
   );
