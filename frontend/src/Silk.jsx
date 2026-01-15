@@ -127,7 +127,8 @@ const Silk = ({
     inset: 0,
     zIndex: -1,
     width: "100vw",
-    height: "100svh",   // was 100vh
+    height: "100dvh",
+    minHeight: "100vh",
     display: "block",
   }}
 >
