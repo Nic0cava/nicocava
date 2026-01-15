@@ -13,6 +13,7 @@ const ScrollStack = ({
   maxExtraScale = 0.1,   // how much larger center card gets
   maxTranslateY = 40,    // how much cards move up/down
   rotationAmount = 4,    // degrees max tilt
+  focusWindow = 1,       // larger = longer focus window
 }) => {
   const wrapperRef = useRef(null);
   const cardsRef = useRef([]);
@@ -28,10 +29,11 @@ const ScrollStack = ({
     cards.forEach((card, index) => {
       const rect = card.getBoundingClientRect();
       const cardCenter = rect.top + rect.height / 2;
+      const focusDenominator = ((viewportHeight + rect.height) / 2) * focusWindow;
 
       // -1 at top, 0 in center, +1 at bottom
       const norm = clamp(
-        (cardCenter - viewportCenter) / (viewportHeight / 2),
+        (cardCenter - viewportCenter) / focusDenominator,
         -1,
         1
       );
@@ -51,7 +53,7 @@ const ScrollStack = ({
       card.style.opacity = 0.4 + focus * 0.6; // fade a bit when far
       card.style.zIndex = String(100 + Math.round(focus * 10));
     });
-  }, [baseScale, maxExtraScale, maxTranslateY, rotationAmount]);
+  }, [baseScale, maxExtraScale, maxTranslateY, rotationAmount, focusWindow]);
 
   const scheduleUpdate = useCallback(() => {
     if (rafRef.current != null) return;

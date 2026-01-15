@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Silk from "./Silk";
 import ProfileCard from "./ProfileCard";
-import { FiGithub, FiLinkedin, FiMail, FiInstagram } from "react-icons/fi";
+import {
+  FiGithub,
+  FiLinkedin,
+  FiMail,
+  FiInstagram,
+  FiCopy,
+  FiCheck,
+} from "react-icons/fi";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
 
 function ProjectCarousel({ images }) {
@@ -74,6 +81,34 @@ function ProjectCarousel({ images }) {
 
 function App({ username }) {
   const displayName = username || "Nico";
+  const [copiedKey, setCopiedKey] = useState("");
+  const copyTimeoutRef = useRef(null);
+
+  const copyToClipboard = (value, key) => {
+    if (!value) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value);
+      setCopiedKey(key);
+    } else {
+      const fallback = document.createElement("textarea");
+      fallback.value = value;
+      fallback.setAttribute("readonly", "");
+      fallback.style.position = "absolute";
+      fallback.style.left = "-9999px";
+      document.body.appendChild(fallback);
+      fallback.select();
+      document.execCommand("copy");
+      document.body.removeChild(fallback);
+      setCopiedKey(key);
+    }
+
+    if (copyTimeoutRef.current) {
+      clearTimeout(copyTimeoutRef.current);
+    }
+    copyTimeoutRef.current = setTimeout(() => {
+      setCopiedKey("");
+    }, 1800);
+  };
 
   return (
     <div>
@@ -103,7 +138,12 @@ function App({ username }) {
               enableTilt={true}
               enableMobileTilt={true}
               onContactClick={() => {
-                window.location.href = "mailto:nmcava01@gmail.com";
+                const contactSection = document.getElementById("contact");
+                if (contactSection) {
+                  contactSection.scrollIntoView({ behavior: "smooth" });
+                } else {
+                  window.location.href = "#contact";
+                }
               }}
             />
           </div>
@@ -161,11 +201,13 @@ function App({ username }) {
             A growing collection of projects exploring software engineering, data-driven systems, and applied AI across real-world use cases.
           </p>
 
-          <ScrollStack   baseScale={0.92}
-  maxExtraScale={0.08}
-  maxTranslateY={20}
-  rotationAmount={0}
-  >
+          <ScrollStack
+            baseScale={0.92}
+            maxExtraScale={0.08}
+            maxTranslateY={20}
+            rotationAmount={0}
+            focusWindow={1.15}
+          >
             <ScrollStackItem>
               <div className="project-card">
                 <h3 className="project-card-title">Funky Buddha Merch Inventory App</h3>
@@ -185,7 +227,7 @@ function App({ username }) {
                   ]}
                 />
                 <p className="project-card-tech">
-                  Stack: Python · PostgreSQL · Flask · Linux · HTML/CSS · VPS
+                  Stack: Python · PostgreSQL · Flask · Linux · HTML/CSS · Deployed on Hostinger VPS
                 </p>
                 <div className="project-card-links">
                   <a
@@ -210,7 +252,7 @@ function App({ username }) {
               <div className="project-card">
                 <h3 className="project-card-title">Coffee Shop Simulator</h3>
                 <p className="project-card-summary">
-                  A backend-focused Flask application simulating orders and inventory, designed to explore application state, data flow, and CRUD-style logic all in a fun game.
+                  A backend-focused Flask application simulating orders and inventory, built to explore application state, data flow, and CRUD-style logic—all wrapped in a fun game featuring my own custom pixel art.
                 </p>
                 <ProjectCarousel
                   images={[
@@ -221,7 +263,7 @@ function App({ username }) {
                   ]}
                 />
                 <p className="project-card-tech">
-                  Stack: Python · Flask · Jinja · HTML/CSS
+                  Stack: Python · Flask · Jinja · HTML/CSS · Deployed on Render
                 </p>
                 <div className="project-card-links">
                   <a
@@ -239,6 +281,9 @@ function App({ username }) {
                     GitHub / README
                   </a>
                 </div>
+                <p className="project-card-note">
+                  Note: Render apps may take 30–60s to wake.
+                </p>
               </div>
             </ScrollStackItem>
 
@@ -246,7 +291,7 @@ function App({ username }) {
               <div className="project-card">
                 <h3 className="project-card-title">Tappy Plane</h3>
                 <p className="project-card-summary">
-                  A Flappy Bird–style game project built in Godot featuring custom pixel art and scoring logic, demonstrating event-driven programming and system state management.
+                  A Flappy Bird–style game project built in Godot featuring my own custom pixel art and scoring logic, demonstrating event-driven programming and system state management.
                 </p>
                 <ProjectCarousel
                   images={[
@@ -261,7 +306,7 @@ function App({ username }) {
                   ]}
                 />
                 <p className="project-card-tech">
-                  Stack: Godot · GDScript · Pixel Art · AI Sound Assets · GitHub Pages
+                  Stack: Godot · GDScript · Pixel Art · AI Sound Assets · Deployed on GitHub Pages
                 </p>
                 <div className="project-card-links">
                   <a
@@ -282,6 +327,75 @@ function App({ username }) {
               </div>
             </ScrollStackItem>
           </ScrollStack>
+        </div>
+      </section>
+
+      {/* CONTACT SECTION */}
+      <section id="contact" className="contact-section">
+        <div className="contact-inner">
+          <h2 className="contact-title">Contact Me</h2>
+          <p className="contact-subtitle">
+            Open to opportunities and collaborations. Lets Connect!
+          </p>
+          <p className="contact-note">Email is the best way to reach me.</p>
+          <div className="contact-details">
+            <a href="sms:+17548028348" className="contact-item">
+              <span className="contact-label">Phone</span>
+              <span className="contact-value">+1 (754) 802-8348</span>
+              <button
+                type="button"
+                className="contact-copy"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  copyToClipboard("+17548028348", "phone");
+                }}
+                aria-label="Copy phone number"
+              >
+                {copiedKey === "phone" ? <FiCheck /> : <FiCopy />}
+              </button>
+            </a>
+            <a href="mailto:nmcava01@gmail.com" className="contact-item">
+              <span className="contact-label">Email</span>
+              <span className="contact-value">nmcava01@gmail.com</span>
+              <button
+                type="button"
+                className="contact-copy"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  copyToClipboard("nmcava01@gmail.com", "email");
+                }}
+                aria-label="Copy email"
+              >
+                {copiedKey === "email" ? <FiCheck /> : <FiCopy />}
+              </button>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/nicolascava01/"
+              target="_blank"
+              rel="noreferrer"
+              className="contact-item"
+            >
+              <span className="contact-label">LinkedIn</span>
+              <span className="contact-value">linkedin.com/in/nicolascava01</span>
+              <button
+                type="button"
+                className="contact-copy"
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  copyToClipboard(
+                    "https://www.linkedin.com/in/nicolascava01/",
+                    "linkedin"
+                  );
+                }}
+                aria-label="Copy LinkedIn profile link"
+              >
+                {copiedKey === "linkedin" ? <FiCheck /> : <FiCopy />}
+              </button>
+            </a>
+          </div>
         </div>
       </section>
     </div>
