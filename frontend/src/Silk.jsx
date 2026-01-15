@@ -114,14 +114,18 @@ const Silk = ({
 
     setVh();
     window.addEventListener("resize", setVh);
+    window.addEventListener("orientationchange", setVh);
     if (window.visualViewport) {
       window.visualViewport.addEventListener("resize", setVh);
+      window.visualViewport.addEventListener("scroll", setVh);
     }
 
     return () => {
       window.removeEventListener("resize", setVh);
+      window.removeEventListener("orientationchange", setVh);
       if (window.visualViewport) {
         window.visualViewport.removeEventListener("resize", setVh);
+        window.visualViewport.removeEventListener("scroll", setVh);
       }
     };
   }, []);
