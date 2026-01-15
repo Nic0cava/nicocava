@@ -1,7 +1,76 @@
+import { useState } from "react";
 import Silk from "./Silk";
 import ProfileCard from "./ProfileCard";
 import { FiGithub, FiLinkedin, FiMail, FiInstagram } from "react-icons/fi";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack";
+
+function ProjectCarousel({ images }) {
+  const [index, setIndex] = useState(0);
+
+  if (!images || images.length === 0) {
+    return null;
+  }
+
+  const total = images.length;
+  const current = images[index];
+
+  const goPrev = () => {
+    setIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const goNext = () => {
+    setIndex((prev) => (prev + 1) % total);
+  };
+
+  return (
+    <div className="project-card-media">
+      <div className="project-carousel">
+        <div className="project-carousel-viewport">
+          <img
+            className="project-carousel-img"
+            src={current.src}
+            alt={current.alt}
+          />
+        </div>
+        {total > 1 && (
+          <>
+            <div className="project-carousel-controls">
+              <button
+                type="button"
+                className="project-carousel-btn"
+                onClick={goPrev}
+                aria-label="Previous screenshot"
+              >
+                {"<"}
+              </button>
+              <button
+                type="button"
+                className="project-carousel-btn"
+                onClick={goNext}
+                aria-label="Next screenshot"
+              >
+                {">"}
+              </button>
+            </div>
+            <div className="project-carousel-dots">
+              {images.map((image, i) => (
+                <button
+                  key={`${image.src}-dot-${i}`}
+                  type="button"
+                  className={`project-carousel-dot ${
+                    i === index ? "is-active" : ""
+                  }`}
+                  onClick={() => setIndex(i)}
+                  aria-label={`Go to screenshot ${i + 1}`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function App({ username }) {
   const displayName = username || "Nico";
@@ -103,16 +172,18 @@ function App({ username }) {
                 <p className="project-card-summary">
                   A production inventory management system actively used daily by the Funky Buddha Brewery team to track stock by location, calculate inventory value, and export monthly data for reporting and analysis.
                 </p>
-                <div className="project-card-media">
-                  <img
-                    src="/static/images/fb_merch_example1.png"
-                    alt="Funky Buddha Merch Inventory App screenshot"
-                  />
-                  <img
-                    src="/static/images/fb_merch_example2.png"
-                    alt="Funky Buddha Merch Inventory App screenshot"
-                  />
-                </div>
+                <ProjectCarousel
+                  images={[
+                    {
+                      src: "/static/images/fb_merch_example1.png",
+                      alt: "Funky Buddha Merch Inventory App screenshot",
+                    },
+                    {
+                      src: "/static/images/fb_merch_example2.png",
+                      alt: "Funky Buddha Merch Inventory App screenshot",
+                    },
+                  ]}
+                />
                 <p className="project-card-tech">
                   Stack: Python · PostgreSQL · Flask · Linux · HTML/CSS · VPS
                 </p>
@@ -141,12 +212,14 @@ function App({ username }) {
                 <p className="project-card-summary">
                   A backend-focused Flask application simulating orders and inventory, designed to explore application state, data flow, and CRUD-style logic all in a fun game.
                 </p>
-                <div className="project-card-media">
-                  <img
-                    src="/static/images/Coffee_Shop_Screenshot.png"
-                    alt="Coffee Shop Simulator screenshot"
-                  />
-                </div>
+                <ProjectCarousel
+                  images={[
+                    {
+                      src: "/static/images/Coffee_Shop_Screenshot.png",
+                      alt: "Coffee Shop Simulator screenshot",
+                    },
+                  ]}
+                />
                 <p className="project-card-tech">
                   Stack: Python · Flask · Jinja · HTML/CSS
                 </p>
@@ -175,16 +248,18 @@ function App({ username }) {
                 <p className="project-card-summary">
                   A Flappy Bird–style game project built in Godot featuring custom pixel art and scoring logic, demonstrating event-driven programming and system state management.
                 </p>
-                <div className="project-card-media">
-                  <img
-                    src="/static/images/tappy_plane_ss1.png"
-                    alt="Tappy Plane screenshot"
-                  />
-                  <img
-                    src="/static/images/tappy_plane_ss2.png"
-                    alt="Tappy Plane screenshot"
-                  />
-                </div>
+                <ProjectCarousel
+                  images={[
+                    {
+                      src: "/static/images/tappy_plane_ss1.png",
+                      alt: "Tappy Plane screenshot",
+                    },
+                    {
+                      src: "/static/images/tappy_plane_ss2.png",
+                      alt: "Tappy Plane screenshot",
+                    },
+                  ]}
+                />
                 <p className="project-card-tech">
                   Stack: Godot · GDScript · Pixel Art · AI Sound Assets · GitHub Pages
                 </p>
