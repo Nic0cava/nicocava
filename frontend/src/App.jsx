@@ -23,9 +23,9 @@ function App({ username }) {
           <div className="hero-left">
             <ProfileCard
               name={displayName}
-              title="Junior Full-Stack Developer & Creative"
+              title="Data Science & AI Undergraduate"
               handle="the.nico.cava"
-              status="Building tools, games & experiments"
+              status="Building data-driven tools, automation & intelligent systems"
               contactText="Contact Me"
               avatarUrl="/static/images/nico_nobg1.png"
               miniAvatarUrl="/static/images/nico_nobg1.png"
@@ -44,14 +44,10 @@ function App({ username }) {
             <div className="hero-text">
               <h1 className="hero-title">Hey, I'm Nico 👋</h1>
               <p className="hero-subtitle">
-                Full-stack dev, futures trader, and creative who loves building
-                tools, games, and experimental projects with Python, Flask, React,
-                and AI.
+                A Data Science & AI undergraduate and software engineer focused on backend systems, automation, and intelligent applications using Python, AI, and other data-driven tools.
               </p>
               <p className="hero-body">
-                Right now I’m focused on shipping polished portfolio projects,
-                automating workflows, and crafting a personal brand around
-                Axolynth — blending code, trading, and synthwave aesthetics.
+                I’m currently focused on shipping production-quality projects, learning how real systems scale, and building a strong foundation in data-driven development, automation, and applied AI.
               </p>
 
               <div className="hero-socials">
@@ -93,8 +89,7 @@ function App({ username }) {
         <div className="projects-inner">
           <h2 className="projects-title">Featured Projects</h2>
           <p className="projects-subtitle">
-            A mix of real-world tools, games, and experiments I’ve built while
-            learning Flask, React, and automation.
+            A growing collection of projects exploring software engineering, data-driven systems, and applied AI across real-world use cases.
           </p>
 
           <ScrollStack   baseScale={0.92}
@@ -104,24 +99,33 @@ function App({ username }) {
   >
             <ScrollStackItem>
               <div className="project-card">
-                <h3 className="project-card-title">FB Merch Inventory App</h3>
+                <h3 className="project-card-title">Funky Buddha Merch Inventory App</h3>
                 <p className="project-card-summary">
-                  Inventory system for Funky Buddha Brewery’s merch department,
-                  built to cut down backroom trips and save staff time.
+                  A production inventory management system actively used daily by the Funky Buddha Brewery team to track stock by location, calculate inventory value, and export monthly data for reporting and analysis.
                 </p>
+                <div className="project-card-media">
+                  <img
+                    src="/static/images/fb_merch_example1.png"
+                    alt="Funky Buddha Merch Inventory App screenshot"
+                  />
+                  <img
+                    src="/static/images/fb_merch_example2.png"
+                    alt="Funky Buddha Merch Inventory App screenshot"
+                  />
+                </div>
                 <p className="project-card-tech">
-                  Stack: Flask · PostgreSQL · Bootstrap · VPS
+                  Stack: Python · PostgreSQL · Flask · Linux · HTML/CSS · VPS
                 </p>
                 <div className="project-card-links">
                   <a
-                    href="https://your-live-fb-merch-url.com"
+                    href="https://github.com/Nic0cava/FB_Merch.git"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Live Site
                   </a>
                   <a
-                    href="https://github.com/Nic0cava/YOUR_FB_MERCH_REPO"
+                    href="https://github.com/Nic0cava/FB_Merch.git"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -135,22 +139,27 @@ function App({ username }) {
               <div className="project-card">
                 <h3 className="project-card-title">Coffee Shop Simulator</h3>
                 <p className="project-card-summary">
-                  A small Flask app simulating drink orders and inventory – used
-                  as a playground for routes, forms, and state.
+                  A backend-focused Flask application simulating orders and inventory, designed to explore application state, data flow, and CRUD-style logic all in a fun game.
                 </p>
+                <div className="project-card-media">
+                  <img
+                    src="/static/images/Coffee_Shop_Screenshot.png"
+                    alt="Coffee Shop Simulator screenshot"
+                  />
+                </div>
                 <p className="project-card-tech">
-                  Stack: Flask · Jinja · CSS
+                  Stack: Python · Flask · Jinja · HTML/CSS
                 </p>
                 <div className="project-card-links">
                   <a
-                    href="https://your-live-coffee-sim-url.com"
+                    href="https://flask-coffee-shop-app-game.onrender.com/"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Live Site
                   </a>
                   <a
-                    href="https://github.com/Nic0cava/YOUR_COFFEE_SIM_REPO"
+                    href="https://github.com/Nic0cava/Flask-Coffee-Shop-App-Game.git"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -164,22 +173,31 @@ function App({ username }) {
               <div className="project-card">
                 <h3 className="project-card-title">Tappy Plane</h3>
                 <p className="project-card-summary">
-                  A Flappy Bird–style game made in Godot with custom pixel art
-                  and high-score logic.
+                  A Flappy Bird–style game project built in Godot featuring custom pixel art and scoring logic, demonstrating event-driven programming and system state management.
                 </p>
+                <div className="project-card-media">
+                  <img
+                    src="/static/images/tappy_plane_ss1.png"
+                    alt="Tappy Plane screenshot"
+                  />
+                  <img
+                    src="/static/images/tappy_plane_ss2.png"
+                    alt="Tappy Plane screenshot"
+                  />
+                </div>
                 <p className="project-card-tech">
-                  Stack: Godot · Pixel Art · JS
+                  Stack: Godot · GDScript · Pixel Art · AI Sound Assets · GitHub Pages
                 </p>
                 <div className="project-card-links">
                   <a
-                    href="https://nic0cava.github.io/TappyPlane"
+                    href="https://nic0cava.github.io/Tappy_Plane/"
                     target="_blank"
                     rel="noreferrer"
                   >
                     Live Site
                   </a>
                   <a
-                    href="https://github.com/Nic0cava/TappyPlane"
+                    href="https://github.com/Nic0cava/Tappy_Plane.git"
                     target="_blank"
                     rel="noreferrer"
                   >
