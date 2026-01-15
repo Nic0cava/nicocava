@@ -335,7 +335,7 @@ function App({ username }) {
         <div className="contact-inner">
           <h2 className="contact-title">Contact Me</h2>
           <p className="contact-subtitle">
-            Open to opportunities and collaborations. Lets Connect!
+            Open to opportunities and collaborations.
           </p>
           <p className="contact-note">Email is the best way to reach me.</p>
           <div className="contact-details">
