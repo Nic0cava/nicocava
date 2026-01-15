@@ -106,6 +106,26 @@ const Silk = ({
 }) => {
   const meshRef = useRef();
 
+  useLayoutEffect(() => {
+    const setVh = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    setVh();
+    window.addEventListener("resize", setVh);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", setVh);
+    }
+
+    return () => {
+      window.removeEventListener("resize", setVh);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener("resize", setVh);
+      }
+    };
+  }, []);
+
   const uniforms = useMemo(
     () => ({
       uSpeed: { value: speed },
@@ -127,7 +147,7 @@ const Silk = ({
     inset: 0,
     zIndex: -1,
     width: "100vw",
-    height: "100dvh",
+    height: "calc(var(--vh, 1vh) * 100)",
     minHeight: "100vh",
     display: "block",
   }}
