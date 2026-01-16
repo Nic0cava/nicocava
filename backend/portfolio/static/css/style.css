@@ -4,7 +4,19 @@ html, body, #root {
 
 body {
   margin: 0;
-  background: #000; /* fallback behind Silk just in case */
+  background: #004d2f;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .navbar {
